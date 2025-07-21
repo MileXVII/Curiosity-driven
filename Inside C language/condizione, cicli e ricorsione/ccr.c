@@ -204,8 +204,4 @@ iterate:
 
 N.B. E' possibile fare cio' solo se la funzione e' di coda.
 */
-
-/*
-
-*/
 }
