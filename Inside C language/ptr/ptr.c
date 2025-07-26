@@ -1,94 +1,98 @@
 #include <stdio.h>
 
 void incr(int *p) {
-    printf("prima di incrementare: %d\n", *p);
-    *p = *p + 1; //l'intero che c'e' all'indirizzo p e' uguale a se stesso + 1
-    //p[0] = p[0] + 1;
+    printf("before incrementing: %d\n", *p);
+    *p = *p + 1; // the integer stored at address p becomes itself + 1
+    // p[0] = p[0] + 1;
 }
 
 void printstr(char*);
 
 int main(void){
-    int x = 5; //variabile intera memorizzata da qualche parte in memoria
-    int *y = NULL; /*puntatore di tipo intero, NULL e' uguale allo 0 per i puntatori
-    y non e' grande quanto un itero, ma contiene e punta un indirizzo di memoria di un intero.
+    int x = 5; // integer variable stored somewhere in memory
+    int *y = NULL; /* pointer to an integer; NULL is equivalent to 0 for pointers.
+    y doesn't store an actual integer but holds the memory address of one.
     */
-    y = &x; /*y, che puo' registrare indirizzi di memoria di tipo intero, e' uguale all'indirizzo di memoria in cui x e' registrato
-    N.B. l'operatore '&' prima di una variabile dice che non vogliamo il suo contenuto ma il suo indirizzo di memoria
-    */   
-    printf("x e' memorizzato nell'indirizzo: %p e vale %d\n", y, x); //in questo caso possiamo anche sostituire 'y' con '&x'
-    /* y = 10; in questo caso y punta all'indirizzo di memoria 10*/
-    /* *y = 10; all'indirizzo di memoria in cui e' contenuto y (dove in questo caso c'e' un intero, ecco perche' serve il tipo) vai a scrivere 10.
-    possiamo anche scrivere: y[0] = 10; 
+    y = &x; /* y, which can store the address of an integer, is assigned the address of x.
+    Note: the '&' operator before a variable gives its memory address, not its value.
+    */
+    printf("x is stored at address: %p and has value %d\n", y, x); // you could also write '&x' instead of 'y'
+    
+    /* y = 10; this would make y point to memory address 10 */
+    /* *y = 10; writes 10 into the memory location that y points to.
+       Alternatively: y[0] = 10;
     */
 
     incr(y);
-    incr(&x); //stessa cosa
+    incr(&x); // same thing
+
     /*
-    'x'. essendo una variabile locale, dovrebbe essere visibile solo nel main ma, 
-    se passiamo il suo indirizzo di memoria, e' possibile vederlo anche esternamente al main.
+    Even though 'x' is a local variable and normally only accessible in main,
+    by passing its memory address we can access it outside of main.
     */
 
-    printf("x ora e' %d:\n", x);
+    printf("x is now %d\n", x);
 
-    int **z = &y; //un puntatore a un puntatore di un intero
-    printf("y e' memorizzato nell'indirizzo: %p\n", z);
+    int **z = &y; // pointer to a pointer to an integer
+    printf("y is stored at address: %p\n", z);
 
     printf("\n\n");
-    printf("x e' grande: %d bytes,\ny e' grande: %d bytes,\nz e' grande: %d bytes\n",(int)sizeof(x), (int)sizeof(y), (int)sizeof(z));
-    //tutti i puntatori sono normalmente grandi uguali, ovvero 8 byte.
+    printf("x size: %d bytes,\ny size: %d bytes,\nz size: %d bytes\n",
+           (int)sizeof(x), (int)sizeof(y), (int)sizeof(z));
+    // All pointers typically have the same size (usually 8 bytes on 64-bit systems)
     printf("\n\n");
 
     char mystr[] = "AABBCCDDEEFF";
     printf("%s\n", mystr);
     char *p = mystr;
-    printf("in: %p posso vedere: '%s'\n", mystr, mystr);
-    printf("%c%c\n\n", p[0], p[1]); //stampa: AA. 
-    //printf("%c%c\n", *p, *(p+1));
-    
-    printf("Inizialmente p e' %p\n", p);
+    printf("at: %p we can see: '%s'\n", mystr, mystr);
+    printf("%c%c\n\n", p[0], p[1]); // prints: AA
+    // printf("%c%c\n", *p, *(p+1));
+
+    printf("Initially, p is %p\n", p);
     while(*p != 0) {
-        putchar(*p); //p[0]
+        putchar(*p); // p[0]
         p++;
     }
     printf("\n");
+
     /*
     while(*p != E) {
-        putchar(p[1]); //stampera' sempre il successivo
+        putchar(p[1]); // would always print the next character
         p++;
     }
     */
 
-    printf("successivamente p e' %p\n", p);
-    
+    printf("Afterwards, p is %p\n", p);
+
     char *ptr = mystr;
 
     printstr(ptr);
     printstr(mystr);
-    printstr(mystr+3);
+    printstr(mystr + 3);
 
     printf("\n\n");
 
     /*
     short *p1 = (short*)mystr;
-    p++;
+    p1++;
     printf("%d\n", *p1);
-    
-    N.B.
-    QUANDO INCREMENTO UN QUALSIASI PUNTATORE DI 1, IN REALTA' QUEL 1
-    SARA' INIZIALMENTE MOLTIPLICATO PER LA GRANDEZZA DEL TIPO BASE DEL PUNTATORE
-    quindi, in questo caso, se siamo sul primo A, e incrementiamo p di 4 (p += 4),
-    non arriveremo alla seconda B. Ma, essendo lo short di 2 byte,
-    arrivero' alla E.
-    questo succede anche con p[4]
+
+    NOTE:
+    WHEN YOU INCREMENT ANY POINTER BY 1,
+    THAT 1 IS ACTUALLY MULTIPLIED BY THE SIZE OF THE POINTER'S BASE TYPE.
+    So in this case, if we're on the first 'A' and increment p by 4 (p += 4),
+    we won’t reach the second 'B'. Since short is 2 bytes,
+    we’ll end up at 'E'.
+    The same applies to p[4]
     */
     return 0;
 }
 
-//FUNZIONE STAMPA STRINGA
+// STRING PRINT FUNCTION
 void printstr(char* p) {
     while(*p != 0) {
-        putchar(p[0]); //*p
+        putchar(p[0]); // *p
         p++;
     }
     printf("\n");
