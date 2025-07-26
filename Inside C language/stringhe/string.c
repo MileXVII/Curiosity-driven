@@ -2,32 +2,32 @@
 
 int main(void){
 
-   //char c = 10; intero di tipo char casting automatico in int
-    char c = 'p'; //intero di tipo char, 
-    //N.B. gli apici '' in c possono contenere solo un carattere
+   //char c = 10; char type integer automatically cast to int
+    char c = 'p'; //char type integer
+    //N.B. single quotes '' in C can hold only one character
 
-    //il carattere verra' espanso a un numero che rappresenta la posizione di quel carattere nello standard ASCII  
+    //the character will be expanded to a number representing its position in the ASCII standard
     printf("Hello World %d \n", c); 
 
-    //Hello World come argomento
+    //Hello World as argument
     printf("[%s]\n", "Hello World");
 
-    //stampare il carattere
+    //print characters
     printf("[%c%c%c%c]\n", 65, 'x', 67, 68);
     
-    //array di tipo char (stringa)
-    char str[6] = {'h', 'e', 'l', 'l', '0', 0}; //lo 0 senza apicetti oppure lo: "'\0'" e' il terminatore nullo
+    //char array (string)
+    char str[6] = {'h', 'e', 'l', 'l', '0', 0}; // 0 without quotes or '\0' is the null terminator
     //char str2[6] = "hell0";
-    //char str2[] = "hell0"; il sizeof restituisce dimensione 6
-    /*posso anche scrivere: 
+    //char str2[] = "hell0"; sizeof returns size 6
+    /* also possible:
     1) str[3] = 'X'; 
     2) str[3] = 58;
     3) str[3]++;
-    e verra' sostituito il carattere presente nella posizione 3 dell'array di caratteri
+    this replaces the character at position 3 in the char array
     */
     printf("%s\n", str);
    
-    //ciclo di stampa
+    //print loop
     int i = 0;
     while(str[i] != 0){
         printf("%c", str[i]);
@@ -35,11 +35,9 @@ int main(void){
     }
     printf("\n");
 
-    //torniamo al nostro Hello World!
-    char str2[6] = "hello"; //e' il programma a inserire automaticamente il terminatore nullo 
+    //back to our Hello World!
+    char str2[6] = "hello"; //the program automatically adds the null terminator
     printf("Hello World: %s %s\n", str, str2);
-
-
 
     return 0;
 }
