@@ -1,73 +1,73 @@
 #include <stdio.h>
 
-int sum(int a, int b){ //possiamo ache scrivere int sum(int, int)
-    return a+b; //ritorna la somma intera tra a e b. N.B. il tipo deve essere coerente con il valore della funzione. //a e b sono parametri
-    /* 
-    return accetta espressioni: quindi anche 
-    if(...){ } o while(...) { } etc.
+// Function to sum two integers.
+// We can also write int sum(int, int)
+int sum(int a, int b){
+    return a + b; // Returns the integer sum of a and b. N.B. the return type must match the function type. //a and b are parameters
+
+    /*
+    return accepts expressions: so also
+    if(...){ } or while(...) { } etc.
     */
 
-    /*POSSIAMO OVVIAMENTE ANCHE SCRIVERE:
-    int c; //c e' una variabile locale.
+    /*WE CAN ALSO WRITE:
+    int c; //c is a local variable.
     c = a + b;
     return c;
     */
 }
 
-//SECONDA FUNZIONE!!
+// SECOND FUNCTION!!
 
-int x = 0; //variabile globale, non perde lo stato
+int x = 0; // global variable, it keeps its state between calls
 
 void incr(void){
-    /*Possiamo sostituire la variabile globale, direttamente all'interno della funzione icnr, precedentemente dichiarata con:
-    static int x = 0; anch'essa non perdera' lo stato.
+    /*We could replace the global variable by defining it directly in the incr function like this:
+    static int x = 0; it also keeps its state.
 
-    N.B. non sara' possibile richiamare 'x' all'interno del main perche' non e' piu' una variabile globale (e' interna alla funzione) anche se la funzione funziona allo stesso modo.
+    N.B. in that case we wouldn't be able to access 'x' in main anymore because it's no longer global (it's scoped to the function),
+    even if the function keeps working the same.
     */
 
     x = x + 1;
     printf("%d\n", x);
 }
 
-/*PROTOTIPO FUNZIONE PER RICHIAMARE LA FUNZIONE STESSA PRESENTE AL DI SOTTO DEL MAIN
+/* FUNCTION PROTOTYPE TO CALL A FUNCTION DECLARED BELOW main
 int sum(int a, int b); 
-oppure..
+or..
 int sum(int, int);
 */
-
 
 int main(){
     puts("Hello World!");
 
+    printf("%d\n", sum(10, 20)); //calling the sum function inside our program //10 and 20 are arguments
 
-    printf("%d\n", sum(10, 20));//richiamiamo la funzione sum all'interno del nostro programma. //10 e 20 sono argomenti
-    
-    /*POSSIAMO ANCHE ASSEGNARE IL VALORE RITORNATO AD UNA VARIABILE
-    int z = sum(30, 20); oppure int z = sum(a, b) con a,b variabili precedentemente inizializzate
-    // z = e' una variabile locale.
+    /*WE CAN ALSO ASSIGN THE RETURNED VALUE TO A VARIABLE
+    int z = sum(30, 20); or int z = sum(a, b) with a, b being previously initialized variables
+    // z is a local variable.
     */
 
-    incr(); //stampa 1
-    incr(); //stampa 2
-    incr(); //stampa 3
-    incr(); //stampa 4
-
+    incr(); // prints 1
+    incr(); // prints 2
+    incr(); // prints 3
+    incr(); // prints 4
 
     int a = 10;
     double y = 1.7532;
 
-    printf("%d %.4f\n", a, y); //%d per gli interi interi, %f o %lf per i double.  //printf("%x, %.4f", a, y) stampa "a, 1.7532", printf("%X, %.4f", a, y) stampa "A, 1.7532"   
-    /*ATTENZIONE!! per la printf non cambia nulla perche' i float sono automaticamente passati a double (default argument promotion), 
-    tuttavia nella scanf, %f "conserva" un float, mentre %lf un double*/
+    printf("%d %.4f\n", a, y); //%d for integers, %f or %lf for double values.  //printf("%x, %.4f", a, y) prints "a, 1.7532", printf("%X, %.4f", a, y) prints "A, 1.7532"
+    /*WARNING!! for printf it doesn’t matter whether it's float or double because float is promoted to double by default (default argument promotion),
+    but in scanf, %f stores a float while %lf stores a double.*/
 
-
-    return 0; //come detto nel file Hello World! lo 0 e' il valore di ritorno della funzione 'speciale' main..
+    return 0; // as explained in the Hello World! file, 0 is the return value of the special main function.
 }
 
-/*POSSIAMO SCRIVERE LA FUNZIONE ANCHE SOTTO PER POI RICHIAMARLA SOPRA DUE VOLTE
-ES:
+/*WE CAN ALSO DECLARE THE FUNCTION BELOW AND CALL IT ABOVE TWICE
+EXAMPLE:
 
 int sum(int a, int b){
-    return a+b;
+    return a + b;
 }
 */
