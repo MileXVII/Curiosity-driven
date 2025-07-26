@@ -1,43 +1,42 @@
-/*PREMESSA:
-E' IMPORTANTE VISIONARE OGNI ELABORATO PRESENTE DAL PRIMO ALL'ULTIMO. LA MAGGIOR PARTE DEL LAVORO E DELLE COMPETENZE VANNO TUTTAVIA ACQUISITE AUTONOMAMENTE.
+/* NOTE:
+IT IS IMPORTANT TO REVIEW EACH EXERCISE FROM FIRST TO LAST. MOST OF THE WORK AND SKILLS MUST BE ACQUIRED INDEPENDENTLY.
 */
 
+#include <stdio.h> // file.h 1) 'h' stands for header 2) header files are included to use commands not originally part of C (like printf())
+// N.B. we can also write #include "file.c"
 
-#include <stdio.h> //file.h 1) h sta per header 2)sono file di intestazione inclusi per includere comandi non facenti parte originariamente del c (come la printf())
-//N.B. possiamo anche scrivere #include "file.c"
-
-/*N.B possiamo in questo specifico programma non includere <stidio.h> ma scrivere solamente il prototipo della funzione printf, ovvero: 
+/* N.B. in this specific program we could omit <stdio.h> and instead just declare the prototype of the printf function:
 int printf(const char * restrict format, ...);
-il prototipo della funzione potra' essere preso da linea di comando wsl, con il comando:
-man 3 printf 
-che andra' a prendere il 'manuale' (a pagina 3 (non sempre!!)) della funzione printf(); 
-N.B. man non e' presente nel powershell 
+The prototype can be obtained from the WSL command line with:
+man 3 printf
+This will fetch the 'manual' (on page 3—though not always!) for the printf() function.
+N.B. 'man' is not available in PowerShell.
 */
 
-int main(){ //int main = funzione di tipo int che si aspetta un valore di ritorno int //int main(){} = int main(void){} con parametro void "sotto inteso"
+int main() { // int main = function of type int expecting an int return value // int main(){} = int main(void){} with an implied void parameter
 
-    printf("Hello World! \n"); //puts("x"); = printf("x\n"); (piu' performante nel caso si volesse semplicemente stampare una parola)
+    printf("Hello World! \n"); // puts("x"); = printf("x\n"); (more performant if just printing a word)
 
-    return 0; //int di ritorno per la variabile main 
-    /*ATTENZIONE!!
-    nei compilatori moderni di c anche se non scriviamo return 0 non succede nulla ma e' buona pratica scriverlo comunque, in C++ da errore.
-    volendo si potrebbe utilizzare la sintassi: void main() { }.
-    Il return 0 serve a segnalare al sistema operativo se il programma ha avuto un buon esito o meno.
-    La convenzione su unix e' che se il programma ritorna 0 e' andata bene, se ritorna 1, 2, 3 ecc.. (per segnalare diversi tipi di errori), vorra' dire che la compilazione e' fallita.
+    return 0; // int return for main
+    /* WARNING!!
+    In modern C compilers, omitting return 0 does nothing, but it is good practice to include it. In C++, it causes an error.
+    You could write: void main() { }.
+    The return 0 signals to the OS whether the program exited successfully.
+    The Unix convention is: return 0 = success, return 1, 2, 3, etc. = various failure types.
     */
 
     /*
-    per stampare il valore del ritorno, es: "return 0", dopo aver eseguito il programma con: "./out", scrivere: "echo $?", in questo caso stampera': "0" oppure direttamente: "./out; echo $?".
-    
-    e' possibile anche scrivere: "./out && ls", se ritorna 0 ls verra' eseguito, altrimenti, se ritorna altro, no. Provare autonomamente per vedere la differenza di output. 
-    cio' e' utile nel caso volessi runnare sequenzialmente piu' programmi con la notazione: "&&", nel caso di un errore di ritorno si fermerebbe e non continuerebbe l'esecuzione dei programmi successivi.
+    To print the return value (e.g. "return 0") after executing the program with: "./out", type: "echo $?" — in this case it will print "0", or use: "./out; echo $?".
 
-    possiamo entrare nella modalita' matematica del terminale scrivendo il comando: 'bc', per uscire dalla modalita' matematica dovremo scrivere 'quit'
+    You can also write: "./out && ls" — if it returns 0, ls will execute; otherwise, it won’t. Try it yourself to observe the difference in output.
+    This is useful if you want to run multiple programs sequentially using "&&" — if one fails, the chain stops.
+
+    To enter the calculator mode of the terminal, type: 'bc'. To exit, type 'quit'.
     */
 }
 
-/* ESEMPIO file.c
-nel 'file.c' avremo solo = printf("Hello World! \n");
+/* FILE EXAMPLE — file.c
+In 'file.c' you'd only have = printf("Hello World! \n");
 
 int main(){
     #include "file.c"
@@ -45,19 +44,21 @@ int main(){
 }
 */
 
-/*RUNNARE IL PROGRAMMA (SU VS CODE):
-PowerShell: 
-    1) cd \Percorso\ (ES: cd C:\Users\micha\OneDrive\Desktop\C)
-    2) gcc -Wall -O2 nome_file.c -o nome_file (creera' un .exe)
-    3) .\nome_file
+/* HOW TO RUN THE PROGRAM (IN VS CODE):
+PowerShell:
+    1) cd \Path\ (e.g. cd C:\Users\micha\OneDrive\Desktop\C)
+    2) gcc -Wall -O2 file_name.c -o output_name (creates a .exe)
+    3) .\output_name
+
 WSL:
-N.B. possibilmente non avrai gcc installato, aggiorna i pacchetti con: 'sudo apt update', poi installa gcc con: 'sudo apt install gcc'
-    1) cd /Percorso/ (ES: cd mnt/c/Users/micha/Onedrive/Desktop/c)
-    2) gcc -Wall -O2 nome_file.c -o nome_file (creera' un file senza estensione eseguibile solamente da riga di comando)
-    3) ./nome_file
-specifiche del '-':
-    1) -Wall & -W (non presente) (mostrano tutti i warning piu' comuni)
-    2) -O2 (runna con una ottimizzazione di livello 2 che fara' si che il compilatore si accorgera' di cose che possiamo scrivere meglio e lo runnera ottimizzato)
-    N.B. migliorie visibili creando un file Assembly del programma runnandolo con '-S'
-    3) -o nome_file (indica il nome del file eseguibile che verra' generato.)
+Note: You probably won’t have gcc installed. First update packages with: 'sudo apt update', then install gcc with: 'sudo apt install gcc'
+    1) cd /Path/ (e.g. cd /mnt/c/Users/micha/OneDrive/Desktop/C)
+    2) gcc -Wall -O2 file_name.c -o output_name (creates a file with no extension, executable only from command line)
+    3) ./output_name
+
+Explanation of the '-':
+    1) -Wall & -W (not shown) — display all common warnings
+    2) -O2 — runs with optimization level 2; allows the compiler to recognize and optimize inefficient code
+       N.B. Improvements can be seen by generating an Assembly file using the '-S' option
+    3) -o output_name — specifies the name of the generated executable file
 */
