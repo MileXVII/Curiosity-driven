@@ -1,43 +1,42 @@
 #include <stdio.h>
 
 int main(void) {
-    char str[] = "aabb"; //questi caratteri corrispondono a dei numeri in ascii
+    char str[] = "aabb"; // these characters correspond to ASCII values
     short *s = (short*)str;
 
-    /*Se acceddo all'indirizzo di memoria
-    1) attraverso str  ci accedo prendendo  (str[0] = "a", str[1] = "a", ...)
-    2) attraverso *s prendo interno a 16bit (s[0] = "aa", s[1] = "bb")
+    /* If I access the memory address:
+    1) through str, I access it byte-by-byte (str[0] = 'a', str[1] = 'a', ...)
+    2) through *s, I access it 16 bits at a time (s[0] = 'aa', s[1] = 'bb')
     */
 
-    printf("%d %d \n", s[0], s[1]); /*stampa 0x6161 = 24929 e 0x6262 = 25186*/
+    printf("%d %d \n", s[0], s[1]); // prints 0x6161 = 24929 and 0x6262 = 25186
 
-    /*se inizializzo str[] = {1, 1, 2, 2}; funziona pure ed i byte varranno effettivamente: 1 1 2 2*/
+    /* If I initialize str[] = {1, 1, 2, 2}; it works as well, and the bytes will be: 1 1 2 2 */
 
     char str1[] = "Hello0000123";
     char *p = str1;
 
-    while(*p) { //while *p not equals 0
-        putchar(*p); //stampa la stringa perche' lo stampo come carattere
+    while(*p) { // while *p is not zero (i.e., not null terminator)
+        putchar(*p); // prints the string character by character
         p++;
     }
     printf("\n");
 
-    //se invece
+    // alternatively:
     char *p2 = str1;
-    while(*p2) { //while *p not equals 0
-        printf("%d ", *p2); //stampa l'intero di quel char rappresentato
+    while(*p2) { // while *p is not zero
+        printf("%d ", *p2); // prints the integer value (ASCII) of the character
         p2++;
     }
 
-    /*Se invece str1 fosse: char str1[] = "Hello\0000000123";
-    con \000 lo 0 in ottale, si fermerebbe quando lo trova.
-    */    
+    /* If instead str1 were: char str1[] = "Hello\0000000123";
+       the loop would stop at \000 since it's the null terminator (octal escape)
+    */
 
     printf("\n");
 
-
-    //*possiamo anche scrivere:
-    char str2[] = "\017Hello\0000000123"; //\017 indica la lunghezza prefissata della stringa (max 255 byte essendo che abbiamo usato un solo byte)
+    // we can also write:
+    char str2[] = "\017Hello\0000000123"; // \017 (octal 017 = decimal 15) acts as a length prefix (max 255 bytes, since it uses one byte)
     char *p3 = str2;
     printf("My string len is %d\n", p3[0]);
     int len = *p3++;
