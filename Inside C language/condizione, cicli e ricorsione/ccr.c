@@ -4,74 +4,70 @@ void count(int, int );
 
 int main(void){
 
-//IF
+// IF STATEMENT
 
     int i = 2;
     
-    if (i > 3){ // {...} e' un blocco
+    if (i > 3) { // {...} is a block
         printf("i > 3\n");
     } else {
         printf("i <= 3\n");
     }
 
-    /*SE ESEGUIAMO UN SINGOLO STATEMENT NON ABBIAMO BISOGNO DEI BLOCCHI
+    /* IF WE EXECUTE A SINGLE STATEMENT, BLOCKS ARE NOT NEEDED
 
        1) if (i < 3) printf("i > 3\n");
 
-        oppure
+       or
 
        2) if (i < 3) 
             printf("i > 3\n");
 
-        oppure
+       or
 
-       3)  if (i < 3){
+       3) if (i < 3){
             printf("i > 3\n");
-            }
+          }
 
-    MA ANCHE CON UN ELSE POSSIAMO OMETTERLI
-        4) if (i > 3)
-                printf("i > 3\n");
-            else 
-                printf("i <= 3\n");
+       AND EVEN WITH ELSE WE CAN OMIT BLOCKS
+       4) if (i > 3)
+              printf("i > 3\n");
+          else 
+              printf("i <= 3\n");
     */
 
-    //POSSIAMO METTERE UN BLOCCO OVUNQUE
+    // WE CAN PLACE A BLOCK ANYWHERE
     {
-        int j = 5; //scopo lessicale interno al blocco
+        int j = 5; // lexical scope inside the block
         printf("j is %d\n", j);
     }
 
-    /*FUORI DAL BLOCCO NON FUNZIONERA'
-            printf("j is %d\n", j);
-    PERCHE' j E' LOCALE IN QUEL BLOCCO*/
+    /* OUTSIDE THAT BLOCK THIS WON’T WORK:
+        printf("j is %d\n", j);
+       BECAUSE j IS LOCAL TO THE BLOCK
+    */
 
-    //ALTRO ESEMPIO 
+    // ANOTHER EXAMPLE
     int x = 8;
-        
 
     {
-    int x = 5; //scopo lessicale (esiste) all'interno del blocco
-    printf("\nfirst inner x is %d\n", x); //---> stampera' 5
-
-        //stampiamo il suo indirizzo di memoria
-        printf("first inner x (%zu bytes) is stored at %p\n",sizeof(x), &x);
+        int x = 5; // lexically scoped inside this block
+        printf("\nfirst inner x is %d\n", x); // will print 5
+        printf("first inner x (%zu bytes) is stored at %p\n", sizeof(x), &x);
     }
 
     {
-    int x = 6; //scopo lessicale (esiste) all'interno del blocco
-    printf("\nsecond inner x is %d\n", x); //---> stampera' 5
-
-        //stampiamo il suo indirizzo di memoria
-        printf("second inner x (%zu bytes) is stored at %p\n",sizeof(x), &x);
+        int x = 6;
+        printf("\nsecond inner x is %d\n", x); // will print 6
+        printf("second inner x (%zu bytes) is stored at %p\n", sizeof(x), &x);
     }
 
-    printf("\nouter x is %d\n", x); //---> stampera' 8
-        //stampiamo il suo indirizzo di memoria
-        printf("outer x (%zu bytes) is stored at %p\n\n\n",sizeof(x), &x);
+    printf("\nouter x is %d\n", x); // will print 8
+    printf("outer x (%zu bytes) is stored at %p\n\n\n", sizeof(x), &x);
 
-//GOTO: CICLO DA 1 A 10
-printf("\n\nciclo goto 1-10:\n\n");
+
+// GOTO: LOOP FROM 1 TO 10
+    printf("\n\nGOTO loop 1–10:\n\n");
     i = 0;
 
 again:
@@ -79,129 +75,145 @@ again:
     i++;
     if (i < 10) goto again;
 
-/*CICLO INFINITO DI STAMPA CIAO IN BASIC
+/* INFINITE LOOP PRINTING "ciao" IN BASIC STYLE:
     l10: printf("ciao\n");
     l20: goto l10;
 */
 
 
-//WHILE: CICLO DA 1 A 10
-printf("\n\nciclo while 1-10:\n\n");
+// WHILE: LOOP FROM 1 TO 10
+    printf("\n\nWHILE loop 1–10:\n\n");
     i = 0;
-    while(i <= 10){        
+    while(i <= 10){
         printf("%d\n", i);
         i++;
-    }; //anche senza ;
+    }; // semicolon is optional
 
 
-    
-//WHILE IDENTICO IN GOTO
-printf("\n\nciclo while trasmutato in goto:\n\n");
-i = 0;
-    loop:
+// WHILE LOOP WRITTEN USING GOTO
+    printf("\n\nWHILE loop translated into GOTO:\n\n");
+    i = 0;
+loop:
     if (!(i <= 10)) goto next;
         printf("%d\n", i);
         i++;
         goto loop;
-    next:
+next:
 
     printf("\n\n");
 
-//CICLO FOR IDENTICO AL WHILE
-printf("\n\nciclo while trasmutato in for:\n\n");
+// FOR LOOP EQUIVALENT TO WHILE
+    printf("\n\nFOR loop equivalent to WHILE:\n\n");
 
-for(i = 0; i < 10; i++){  //se la variabile i e' stata gia' inizializzata possiamo ommetterla: for(; i<10; i++)
-    printf("%d\n", i);
-}
+    for(i = 0; i < 10; i++) {
+        // if i is already declared, we could write: for(; i<10; i++)
+        printf("%d\n", i);
+    }
 
-/*ciclo for omettendo tutto
-i = 0;
-for(;;;) //ciclo "infinito"    {   
-    if(1>10) break; //la funzione break termina il ciclo nei cicli for/while e va nel prossimo ciclo annidato o esce se non presente. 
-    printf("%d\n", i);
-    i++;
-}
+/* FOR LOOP WITH EVERYTHING OMITTED:
+    i = 0;
+    for(;;) { // infinite loop
+        if (i > 10) break;
+        printf("%d\n", i);
+        i++;
+    }
 */
 
-/*Possiamo scrivere il for in un sola riga
-for(int i = 0; i < 10; i++) printf("%d\n", i);
-... -> fuori dal ciclo (i non esiste piu' in questo caso)
+/* COMPACT FOR LOOP IN ONE LINE:
+    for (int i = 0; i < 10; i++) printf("%d\n", i);
+    // → after the loop, i is out of scope
 */
 
 
-/*ciclo while "infinito"
+/* INFINITE WHILE LOOP:
 
-while(1) //In C: 1 = vero, 0 = falso {
-    ...
-}
+    while(1) { // In C: 1 = true, 0 = false
+        ...
+    }
 */
 
-/*CICLO DO WHILE
-do  {
-    ...
-} while(condizione);
 
-N.B. cicla la prima volta a prescindere
+/* DO-WHILE LOOP:
+    do {
+        ...
+    } while(condition);
+
+    NOTE: the loop executes **at least once**, regardless of the condition.
 */
 
 
 printf("\n\n");
-//SWITCH
 
-i = 10;
+// SWITCH STATEMENT
 
-switch(i)   {
-    case 5: printf("E' un cinque\n"); break; //se non mettiamo il break eseguira' le prossime istruzioni fino al primo break trovato
-    case 7: 
-            printf("E' un sette\n"); break;
-            printf("SI!! e' proprio un bel sette\n"); break;
+    i = 10;
 
-    default: printf("Qualche altro numero\n"); break;
-}
+    switch(i) {
+        case 5: 
+            printf("It's a five\n"); 
+            break;
 
-/*UGUALE A SCRIVERE
+        case 7: 
+            printf("It's a seven\n"); 
+            break;
 
-    if( i == 5) {
+            printf("YES!! It's definitely a nice seven\n"); 
+            break;
+
+        default: 
+            printf("Some other number\n"); 
+            break;
+    }
+
+/* EQUIVALENT TO:
+
+    if (i == 5) {
         ...
     } else if (i == 7) {
         ...
-    } else { //default
+    } else { // default
         ...
     }
 
-DIFFERENZA SOSTANZIALE: non possiamo dichiarare variabili all'interno dello switch a meno che non implementiamo un blocco 
+IMPORTANT DIFFERENCE: you can't declare variables inside a switch 
+unless you wrap them inside a block.
 */
 
 
 
 printf("\n\n");
-//RICORSIONE
-printf("\n\nciclo di conta 1-10 tramite funzione ricorsiva count:\n\n");
+// RECURSION
+    printf("\n\nCount from 1 to 10 using recursive function count:\n\n");
     count(0, 10);
 
 
     return 0;
 }
 
-void count(int start, int end)  {
+
+void count(int start, int end) {
     if(start > end) return;
     printf("%d\n", start);
-    count(start+1,end);
+    count(start + 1, end);
 
-    /*ANCHE SE RICHIAMA SE STESSA, OGNI VOLTA VERRANNO CREATE NUOVE VARIABILI START E END
-    potrete visionarlo stampando all'inizio della funzione le celle di memoria corrispondendti con: printf("%p %p", &start, &end);
-    detto cio' si puo' intuire che, anche se elegante, questa metodologia (programmazione funzionale) consuma molta memoria.
+    /* EVEN IF A FUNCTION CALLS ITSELF,
+       NEW VARIABLES (start, end) ARE CREATED EACH TIME.
+       You can verify this by printing their memory addresses:
+       printf("%p %p", &start, &end);
+
+       This means that even though recursion is elegant,
+       it consumes more memory compared to loops.
     */
 
-/*MIGLIORIA CON GOTO PER USARE MOLTA MENO MEMORIA!!
+    /*
+    IMPROVEMENT USING GOTO TO SAVE MEMORY:
 
-iterate:
-    if (start > end) return;
-    printf("%d\n", start);
-    start = start + 1; //possimao anche scrivere start++;
-    goto iterate;
+    iterate:
+        if (start > end) return;
+        printf("%d\n", start);
+        start = start + 1; // or simply start++;
+        goto iterate;
 
-
-N.B. E' possibile fare cio' solo se la funzione e' di coda.
-*/
+    NOTE: this is only safe when the function is tail-recursive.
+    */
 }
