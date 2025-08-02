@@ -3,7 +3,6 @@
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
-#include <unistd.h>
 
 #define GRID_COLS 10
 #define GRID_ROWS 10
@@ -48,22 +47,22 @@ play: //play again (goto)
 
     do{
     puts("Username: ");
-    if(!scanf("%s", username)) error("Scanf of username failed");
-    if(strlen(username) > 20) puts("To long username");
+    if(!scanf("%20s", username)) error("Scanf of username failed");
+    if(strlen(username) > 20) puts("Too long username");
     }while(strlen(username) > 20);
 
     do{
     puts("Boat max size: ");
     if(!scanf("%d", &boat_max_size)) error("Scanf of boat_max_size failed");
-    if(boat_max_size > (GRID_COLS/2)) puts("To Big value");
-    if(boat_max_size < 2) puts("To Low value");
+    if(boat_max_size > (GRID_COLS/2)) puts("Too Big value");
+    if(boat_max_size < 2) puts("Too Low value");
     }while(boat_max_size > (GRID_COLS/2) || boat_max_size < 2);
 
     do{
     puts("Boat min size: ");
     if(!scanf("%d", &boat_min_size)) error("Scanf of boat_min_size failed");
-    if(boat_min_size > boat_max_size) puts("To Big value");
-    if(boat_min_size <= 0) puts("To Low value");
+    if(boat_min_size > boat_max_size) puts("Too Big value");
+    if(boat_min_size <= 0) puts("Too Low value");
     }while(boat_min_size > boat_max_size || boat_min_size <= 0);
 
     set_grid(my_grid, CLEAR);
@@ -131,7 +130,6 @@ do{
         if (count_remaining_boats(opponent_grid) == 0) {
             printf("\x1b[H\x1b[2J\x1b[3J");
             printf("Congratulation %s! You won!\n", username);
-            usleep(100000);
 
             char choice;
             do{
@@ -159,7 +157,7 @@ do{
         set_cell(opponent_grid, x, y, SHOT);
         printf("Missed!\n");
     } else {
-        printf("Already shotted in these position!\n");
+        printf("Already shot at this position!\n");
     }
 
     computer_turn_intelligent(my_grid);
@@ -399,7 +397,7 @@ void computer_turn_intelligent(char* player_grid) {
     if (has_target) {
         // select nearby shotted target
         for (int dir = 0; dir < 4; dir++) {
-            if (directions_tried[dir]) continue; // position already shotted
+            if (directions_tried[dir]) continue; // position already shot
 
             int nx = target_x + dx[dir];
             int ny = target_y + dy[dir];
@@ -452,3 +450,4 @@ void computer_turn_intelligent(char* player_grid) {
         printf("Computer missed at (%d,%d)\n", x, y);
     }
 }
+
