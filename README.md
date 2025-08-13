@@ -13,10 +13,6 @@ A **collection of personal projects and experiments in C**, born purely from cur
 2. [Projects](#projects)
 3. [Requirements](#requirements)
 4. [Usage](#usage)
-5. [Contributing](#contributing)
-6. [License](#license)
-7. [Contact](#contact)
-
 ---
 
 ## 1. Overview
