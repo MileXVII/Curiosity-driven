@@ -23,6 +23,7 @@ sudo apt install gcc
 # How to Compile and Run
 
 **Windows (PowerShell):**
+```bash
 # Navigate to project directory
 cd C:\Path\To\Your\Project
 
@@ -31,9 +32,9 @@ gcc -Wall -O2 filename.c -o output_name
 
 # Run
 .\output_name
-
+```
 **WSL/Linux:**
-
+```bash
 # Navigate to project directory
 cd /path/to/your/project
 
@@ -42,7 +43,7 @@ gcc -Wall -O2 filename.c -o output_name
 
 # Run
 ./output_name
-
+```
 ## Compiler Flags Explained
 - `-Wall` - Display all common warnings
 - `-O2` - Optimization level 2 (compiler optimizes inefficient code)
