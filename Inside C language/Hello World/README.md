@@ -98,14 +98,14 @@ int printf(const char * restrict format, ...);
 
 ## Best Practices
 
--Always include return 0 in main function
--Use meaningful variable names
--Comment complex logic
--Test with various inputs
--Use compiler warnings to catch errors early
+- Always include return 0 in main function
+- Use meaningful variable names
+- Comment complex logic
+- Test with various inputs
+- Use compiler warnings to catch errors early
 
 ## Notes
 
--puts("text") is equivalent to printf("text\n") and more performant for simple string output
--Modern C compilers don't require return 0 but it's good practice
--C++ requires explicit return statements
+- puts("text") is equivalent to printf("text\n") and more performant for simple string output
+- Modern C compilers don't require return 0 but it's good practice
+- C++ requires explicit return statements
