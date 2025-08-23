@@ -65,17 +65,14 @@ gcc -Wall -O2 filename.c -o output_name
 # Check program return value
 ```bash
 echo $?
-```
+
 # Run program and show return value
-```bash
 ./program; echo $?
-```
+
 # Conditional execution (runs ls only if program succeeds)
-```bash
 ./program && ls
-```
+
 # Calculator mode
-```bash
 bc
 ```
 # (type 'quit' to exit)
@@ -98,7 +95,7 @@ int printf(const char * restrict format, ...);
 ```
 (Prototype can be found using man 3 printf)
 
-##Best Practices
+## Best Practices
 
 -Always include return 0 in main function
 -Use meaningful variable names
@@ -106,7 +103,7 @@ int printf(const char * restrict format, ...);
 -Test with various inputs
 -Use compiler warnings to catch errors early
 
-##Notes
+## Notes
 
 -puts("text") is equivalent to printf("text\n") and more performant for simple string output
 -Modern C compilers don't require return 0 but it's good practice
