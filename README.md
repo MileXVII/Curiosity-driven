@@ -8,13 +8,6 @@ A **collection of personal projects and experiments in C**, born purely from cur
 
 ---
 
-## 📜 Table of Contents
-1. [Overview](#overview)
-2. [Projects](#projects)
-3. [Requirements](#requirements)
-4. [Usage](#usage)
----
-
 ## 1. Overview
 
 This repository is a learning diary — a series of raw but genuine experiments.  
