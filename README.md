@@ -39,7 +39,7 @@ Simulates Conway’s rules. From simple patterns to complex evolution — in jus
 ### Inside C language
 Notes, snippets, experiments, and even some glorious mistakes while exploring the depths of C.
 
-📂 [Source code](./InsideC)
+📂 [Source code](./Inside\C\Language)
 
 ---
 
