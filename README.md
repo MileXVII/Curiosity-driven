@@ -32,7 +32,7 @@ A classic Command Line Interface implementation of the game. No fancy graphics �
 ### Conway’s Game of Life
 Simulates Conway’s rules. From simple patterns to complex evolution — in just a few lines of C.
 
-📂 [Source code](./GameOfLife)
+📂 [Source code](./Conway\’s\Game\Of\Life)
 
 ---
 
